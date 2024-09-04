@@ -1,0 +1,5 @@
+name: CardboardX
+version: '0.0.1'
+main: org.evlis.cardboardX.CardboardX
+api-version: '1.21'
+load: STARTUP
