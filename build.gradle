@@ -1,5 +1,6 @@
 plugins {
     id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'xyz.jpenilla.run-paper' version "7.0.1-SNAPSHOT"
     id 'maven-publish'
     id 'java'
 }
@@ -12,15 +13,21 @@ base {
 }
 
 repositories {
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+    maven {
+        name = 'papermc-repo'
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
     mavenCentral()
-    maven {
-        name = "papermc-repo"
-        url = "https://repo.papermc.io/repository/maven-public/"
-    }
-    maven {
-        name = "sonatype"
-        url = "https://oss.sonatype.org/content/groups/public/"
-    }
+    mavenLocal()
+    gradlePluginPortal()
 }
 
 loom {
@@ -88,6 +95,14 @@ processResources {
         expand props
         //expand "version": project.version
     }
+}
+
+// Run a Paper server for testing
+runBukkitServer {
+    // Configure the Minecraft version for our task.
+    // This is the only required configuration besides applying the plugin.
+    // Your plugin's jar (or shadowJar if present) will be used automatically.
+    minecraftVersion("1.21.1")
 }
 
 // configure the maven publication
