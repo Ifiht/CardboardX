@@ -43,6 +43,9 @@ loom {
 }
 
 dependencies {
+    // Testing
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
@@ -69,6 +72,10 @@ java {
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
     toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jar {
